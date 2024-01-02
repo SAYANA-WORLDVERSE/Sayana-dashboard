@@ -1,0 +1,16 @@
+.blog-img {
+  height: 250px;
+}
+.bg-gradient-primary {
+  background-color: var(--text-color);
+}
+.bg-gradient-review {
+  background-color: var(--text-color);
+
+  height: 250px;
+}
+.edit-blog-img{
+    width:200px;
+    height:150px;
+    border-radius:15px;
+}

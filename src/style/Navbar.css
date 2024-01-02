@@ -1,0 +1,76 @@
+.left-sidebar {
+  background-color: white;
+  transition: 0.2s ease-in;
+  height: 100%;
+  z-index: 11;
+  border-right: 1px solid #e5eaef;
+  left: 0;
+  top: 0;
+  width:250px;
+  position: fixed;
+}
+.left-sidebar .scroll-sidebar {
+  overflow-y: auto;
+  height: 100vh;
+}
+.left-sidebar .scroll-sidebar .simplebar-track.simplebar-horizontal {
+  visibility: hidden !important;
+}
+.unlimited-access {
+  padding: 18px 22px 25px;
+  margin: 0 -5px;
+}
+.unlimited-access .unlimited-access-img {
+  margin: -35px -5px 0 -43px;
+}
+.nav-small-cap {
+  margin-top: 5px;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 3px 12px;
+  line-height: 26px;
+  text-transform: uppercase;
+}
+.nav-small-cap .nav-small-cap-icon {
+  display: none;
+}
+.sidebar-nav ul .sidebar-item .sidebar-link {
+  color: var(--text-color);
+  display: flex;
+  font-size: 18px;
+  white-space: nowrap;
+  align-items: center;
+  line-height: 25px;
+  position: relative;
+  margin: 0px 0px 2px;
+  padding: 10px;
+  border-radius: 7px;
+  gap: 15px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.sidebar-nav ul .sidebar-item .sidebar-link span:first-child {
+  display: flex;
+}
+.sidebar-nav ul .sidebar-item:hover a span {
+  color: white;
+}
+.sidebar-nav ul .sidebar-item:hover {
+  background: var(--text-color);
+}
+
+.sidebar-nav .sidebar-list .sidebar-list-item {
+  padding: 8px 0;
+}
+.collapse.in {
+  display: block;
+}
+ul {
+  list-style: none;
+  padding-left: 0px !important;
+}
+.sidebar-link {
+  padding: 0.5rem 2rem !important;
+  border-radius: 10px;
+}

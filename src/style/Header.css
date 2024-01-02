@@ -1,0 +1,31 @@
+.app-header {
+  background-color: white;
+  margin: 0px !important;
+  position: sticky;
+  top: 0;
+  z-index:99;
+}
+
+.search {
+  width: 350px;
+  padding: 0.6rem;
+  border-radius: 20px;
+}
+.profile {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+#dropdown-basic {
+  background: transparent !important;
+  border: none;
+  color: #082f53;
+  font-size: 1.2rem;
+}
+.acc-list{
+  padding:5px;
+  cursor: pointer;
+}
+.acc-list span{
+  margin: 0px 5px;
+}
