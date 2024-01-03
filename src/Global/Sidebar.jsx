@@ -30,7 +30,7 @@ const Navbar = () => {
                 <span className="hide-menu">Home</span>
               </li>
               <li className="sidebar-item">
-                <Link to="/dashboard" className="sidebar-link">
+                <Link to="/" className="sidebar-link">
                   <span>
                     <MdSpaceDashboard />
                   </span>

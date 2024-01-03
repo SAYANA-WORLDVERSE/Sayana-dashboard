@@ -36,7 +36,7 @@ const Allprojects = () => {
           });
         }
 
-        allBlogs();
+        getAllProjects();
       } catch (error) {
         seterrors(error.message);
       }
