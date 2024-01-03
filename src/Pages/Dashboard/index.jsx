@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import "../../style/Home.css";
 import { IoMdHome } from "react-icons/io";
 import circle from "../../assets/circle.1541da91.svg";
+import Loader from "../../Components/Loader";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,9 +11,10 @@ import {
   Title,
   Tooltip,
   Legend,
-  ArcElement,
+  LineElement,
+  PointElement
 } from "chart.js";
-import { Bar, Pie } from "react-chartjs-2";
+import { Bar, Line } from "react-chartjs-2";
 import { faker } from "@faker-js/faker";
 import Table from "../../Components/Table";
 import axios from "axios";
@@ -20,7 +22,7 @@ import { baseUrl } from "../../api";
 
 const index = () => {
   const [Leads, setLeads] = useState([]);
-  const [Loading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
   const [error, seterror] = useState(null);
   const tableHeader = [
     "sl",
@@ -33,9 +35,12 @@ const index = () => {
   ];
 
   const AllLeads = async () => {
+
     try {
       const res = await axios.get(`${baseUrl}contact/allLeads`);
       setLeads(res.data.allLeads);
+      setLoading(false);
+
     } catch (error) {
       seterror(error);
     } finally {
@@ -51,10 +56,11 @@ const index = () => {
     CategoryScale,
     LinearScale,
     BarElement,
+    PointElement,
+    LineElement,
     Title,
     Tooltip,
     Legend,
-    ArcElement
   );
 
   const options = {
@@ -69,18 +75,7 @@ const index = () => {
       },
     },
   };
-  const optionspie = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "Chart.js Bar Chart",
-      },
-    },
-  };
+  
   const labels = [
     "January",
     "February",
@@ -106,32 +101,24 @@ const index = () => {
       },
     ],
   };
-  const piedata = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+   const dataLine = {
+    labels,
     datasets: [
       {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
-        borderWidth: 1,
+        label: 'Dataset 1',
+        data: labels.map(() => faker.number.int({ min: -1000, max: 1000 })),
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      },
+      {
+        label: 'Dataset 2',
+        data: labels.map(() => faker.number.int({ min: -1000, max: 1000 })),
+        borderColor: 'rgb(53, 162, 235)',
+        backgroundColor: 'rgba(53, 162, 235, 0.5)',
       },
     ],
   };
+ 
 
   return (
     <Fragment>
@@ -184,7 +171,7 @@ const index = () => {
           </div>
         </div>
         <div className="row mt-4">
-          <div className="col-md-7 grid-margin stretch-card">
+          <div className="col-md-6 grid-margin stretch-card">
             <div className="card">
               <div className="card-body">
                 <div className="clearfix mb-4">
@@ -201,7 +188,7 @@ const index = () => {
               </div>
             </div>
           </div>
-          <div className="col-md-5 grid-margin stretch-card pie-chart">
+          <div className="col-md-6 grid-margin stretch-card ">
             <div className="card">
               <div className="card-body">
                 <h4 className="card-title">Traffic Sources</h4>
@@ -209,20 +196,21 @@ const index = () => {
                   id="traffic-chart-legend"
                   className="rounded-legend legend-vertical legend-bottom-left pt-4"
                 >
-                  <Pie data={piedata} options={optionspie} />
+                  <Line data={dataLine} options={options} />
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="row">
+        <div className="row mt-4">
           <div className="col-12 grid-margin">
             <div className="card">
               <div className="card-body">
                 <h4 className="card-title">All Leads</h4>
-                <div className="table-responsive">
-                  <Table data={Leads} header={tableHeader} />
+                <div className="table-responsive d-flex justify-content-center">
+                  {isLoading ?<><Loader/></>:   <Table data={Leads} header={tableHeader} />}
+               
                 </div>
               </div>
             </div>

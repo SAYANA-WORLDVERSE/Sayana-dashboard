@@ -1,8 +1,9 @@
-import React, { Fragment,useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Table from "../../Components/Table";
 import { FaUser } from "react-icons/fa";
 import axios from "axios";
 import { baseUrl } from "../../api";
+import Loader from "../../Components/Loader";
 
 const AllLeads = () => {
   const [Leads, setLeads] = useState([]);
@@ -18,12 +19,11 @@ const AllLeads = () => {
     "Message",
   ];
 
-
-  
   const AllLeads = async () => {
     try {
       const res = await axios.get(`${baseUrl}contact/allLeads`);
       setLeads(res.data.allLeads);
+      setLoading(false);
     } catch (error) {
       seterror(error);
     } finally {
@@ -44,7 +44,6 @@ const AllLeads = () => {
             </span>
             <p className="home-title m-0">All Leads</p>
           </div>
-        
         </div>
 
         <div className="row mt-3">
@@ -52,8 +51,14 @@ const AllLeads = () => {
             <div className="card">
               <div className="card-body">
                 <h4 className="card-title">All Leads</h4>
-                <div className="table-responsive">
-                <Table data={Leads} header={tableHeader} />
+                <div className="table-responsive d-flex justify-content-center">
+                  {Loading ? (
+                    <>
+                      <Loader />
+                    </>
+                  ) : (
+                    <Table data={Leads} header={tableHeader} />
+                  )}
                 </div>
               </div>
             </div>

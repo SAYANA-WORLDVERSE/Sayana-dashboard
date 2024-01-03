@@ -32,20 +32,8 @@
     right: 0;
     height: 100%;
 }
-.pie-chart{
-    height:530px;
-}
 
-#traffic-chart-legend canvas{
-    width:427px !important;
-    height:427px !important;
-  
 
-}
-#traffic-chart-legend{
-    display:flex !important;
-    justify-content: center;
-}
 .table td img, .table th img {
     width: 36px;
     height: 36px;

@@ -2,10 +2,11 @@ import React, { Fragment, useState, useEffect, useCallback } from "react";
 import { FaUser } from "react-icons/fa";
 import axios from "axios";
 import { baseUrl } from "../../api";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import Loader from "../../Components/Loader";
 
 const index = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [error, seterror] = useState(null);
   const [loading, setloading] = useState(true);
@@ -14,6 +15,7 @@ const index = () => {
     try {
       const res = await axios.get(`${baseUrl}userdetails`);
       setData(res.data.user);
+      setloading(false);
     } catch (error) {
       seterror(error);
     } finally {
@@ -34,7 +36,12 @@ const index = () => {
             <p className="home-title m-0">All User</p>
           </div>
           <div className=" d-flex  align-items-center gap-2">
-            <button className="home-icons p-1" onClick={()=>navigate('/createuser')}>Create User</button>
+            <button
+              className="home-icons p-1"
+              onClick={() => navigate("/createuser")}
+            >
+              Create User
+            </button>
           </div>
         </div>
 
@@ -43,39 +50,45 @@ const index = () => {
             <div className="card">
               <div className="card-body">
                 <h4 className="card-title">All User</h4>
-                <div className="table-responsive">
-                  <table className="table">
-                    <thead className="table-header">
-                      <tr>
-                        <td>Sl No</td>
-                        <td>Name</td>
-                        <td>Email</td>
-                        <td>Mobile</td>
-                        <td>Created date</td>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {data &&
-                        data.map((item, index) => {
-                          return (
-                            <tr key={item._id}>
-                              <td>{index + 1}</td>
-                              <td>{item.username}</td>
-                              <td>{item.email}</td>
-                              <td>{item.mobile}</td>
-                              <td>
-                                {item.date instanceof Date
-                                  ? item.date.toLocaleDateString()
-                                  : typeof item.date === "string" &&
-                                    item.date.trim() !== ""
-                                  ? new Date(item.date).toLocaleDateString()
-                                  : "Invalid Date"}
-                              </td>
-                            </tr>
-                          );
-                        })}
-                    </tbody>
-                  </table>
+                <div className="table-responsive d-flex justify-content-center">
+                  {loading ? (
+                    <>
+                      <Loader />
+                    </>
+                  ) : (
+                    <table className="table">
+                      <thead className="table-header">
+                        <tr>
+                          <td>Sl No</td>
+                          <td>Name</td>
+                          <td>Email</td>
+                          <td>Mobile</td>
+                          <td>Created date</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {data &&
+                          data.map((item, index) => {
+                            return (
+                              <tr key={item._id}>
+                                <td>{index + 1}</td>
+                                <td>{item.username}</td>
+                                <td>{item.email}</td>
+                                <td>{item.mobile}</td>
+                                <td>
+                                  {item.date instanceof Date
+                                    ? item.date.toLocaleDateString()
+                                    : typeof item.date === "string" &&
+                                      item.date.trim() !== ""
+                                    ? new Date(item.date).toLocaleDateString()
+                                    : "Invalid Date"}
+                                </td>
+                              </tr>
+                            );
+                          })}
+                      </tbody>
+                    </table>
+                  )}
                 </div>
               </div>
             </div>
