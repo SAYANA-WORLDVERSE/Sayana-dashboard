@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import "../style/Login.css";
 import logo from "../assets/white-logo.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -14,7 +14,6 @@ import Swal from "sweetalert2";
 const Register = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [buttonTxt, setbtnTxt] = useState("Submit");
   const initialValues = {
     username: "",
     email: "",
@@ -40,6 +39,7 @@ const Register = () => {
   });
 
   const handleSubmiting = async (values, { setSubmitting, resetForm }) => {
+    alert("hy");
     setLoading(true);
 
     try {
@@ -51,12 +51,11 @@ const Register = () => {
           title: "User Register Successfully!",
           text: "Thank you for Register,Now You can login.",
         });
-       
       }
-   
+
       resetForm();
-      setLoading(false); 
-      navigate('/')     
+      setLoading(false);
+      navigate("/");
     } catch (error) {
       console.error("Error submitting form:", error);
       setLoading(false);
@@ -94,7 +93,7 @@ const Register = () => {
                   >
                     <Form>
                       <div className="mb-3">
-                        <label  className="form-label text-white">
+                        <label className="form-label text-white">
                           Username
                         </label>
                         <Field
@@ -136,7 +135,9 @@ const Register = () => {
                         />
                       </div>
                       <div className="mb-4">
-                        <label className="form-label text-white">Password</label>
+                        <label className="form-label text-white">
+                          Password
+                        </label>
                         <Field
                           type="password"
                           className="form-control"

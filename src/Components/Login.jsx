@@ -143,7 +143,7 @@ const Login = () => {
                           <>Sign In</>
                         )}
                       </button>
-                      <div className="d-flex align-items-center justify-content-center">
+                      {/* <div className="d-flex align-items-center justify-content-center">
                         <p className="fs-5 mb-0 fw-bold text-white">
                           New to Sayana
                         </p>
@@ -153,7 +153,7 @@ const Login = () => {
                         >
                           Create an account
                         </Link>
-                      </div>
+                      </div> */}
                     </Form>
                   </Formik>
                 </div>
