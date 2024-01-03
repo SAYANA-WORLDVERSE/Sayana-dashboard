@@ -35,13 +35,13 @@ const Login = () => {
     try {
       const response = await axios.post(`${baseUrl}login`, values);
       if (response.status == 201) {
+        
         const data = await response.data;
-        sessionStorage.setItem("Token", data.token);
+        sessionStorage.setItem("token", data.token);
         sessionStorage.setItem("user", data.user.username);
       }
-      navigate("/dashboard");
-      window.location.reload();
 
+      window.location.href = "/dashboard";
 
       resetForm();
       setLoading(false);
