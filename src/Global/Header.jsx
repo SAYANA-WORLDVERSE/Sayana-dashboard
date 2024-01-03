@@ -13,9 +13,10 @@ const Header = () => {
 
   const Logout = () => {
     alert("logout");
-    sessionStorage.removeItem("Token");
-    Navigate('/')
+    sessionStorage.removeItem("token");
     window.location.reload ();
+
+    Navigate('/')
   };
 
   useEffect(() => {}, []);

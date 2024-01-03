@@ -21,7 +21,7 @@ import Addproject from "./Pages/Projects/Addproject";
 import Setting from "./Pages/Settings/setting";
 
 const App = () => {
-  const Token= sessionStorage.getItem("token")
+  const Token = sessionStorage.getItem("token");
 
   return (
     <Fragment>
@@ -36,24 +36,23 @@ const App = () => {
                 <Header />
 
                 <Routes>
-                  <Route path="/dashboard" element={<Home />} />
-                  <Route path="/Alluser" element={<Alluser />}/>
-                  <Route path="/createuser" element={<CreateUser />}/>
-                  <Route path="/Allleads" element={<AllLeads />}/>
-                  <Route path="/Careerleads" element={<Career />}/>
-                  <Route path="/logout" element={<Register />}/>
-                  <Route path="/allblogs" element={<AllBlogs/>}/>
-                  <Route path="/createblog" element={<CreateBlog/>}/>
-                  <Route path="/editblog/:id" element={<EditBlog/>}/>
-                  <Route path="/allreviews" element={<AllReview/>}/>
-                  <Route path="/addreview" element={<CreateReview/>}/>
-                  <Route path="/editreview/:id" element={<EditReview/>}/>
-                  <Route path="/allprojects" element={<Allprojects/>}/>
-                  <Route path="/addproject" element={<Addproject/>}/>
-                  <Route path="/setting" element={<Setting/>}/>
-                  
-                
-                  <Route path="*" element={<ErrorPage/>}/>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/Alluser" element={<Alluser />} />
+                  <Route path="/createuser" element={<CreateUser />} />
+                  <Route path="/Allleads" element={<AllLeads />} />
+                  <Route path="/Careerleads" element={<Career />} />
+                  <Route path="/logout" element={<Register />} />
+                  <Route path="/allblogs" element={<AllBlogs />} />
+                  <Route path="/createblog" element={<CreateBlog />} />
+                  <Route path="/editblog/:id" element={<EditBlog />} />
+                  <Route path="/allreviews" element={<AllReview />} />
+                  <Route path="/addreview" element={<CreateReview />} />
+                  <Route path="/editreview/:id" element={<EditReview />} />
+                  <Route path="/allprojects" element={<Allprojects />} />
+                  <Route path="/addproject" element={<Addproject />} />
+                  <Route path="/setting" element={<Setting />} />
+
+                  <Route path="*" element={<ErrorPage />} />
                 </Routes>
               </div>
             </div>
@@ -61,10 +60,9 @@ const App = () => {
         ) : (
           <>
             <Routes>
-              <Route path="/" exact element={<Login />}></Route>
+              <Route path="/" element={<Login />}></Route>
               <Route path="/register" element={<Register />}></Route>
-              <Route path="*" element={<ErrorPage/>}/>
-
+              <Route path="*" element={<ErrorPage />} />
             </Routes>
           </>
         )}

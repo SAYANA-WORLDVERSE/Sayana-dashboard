@@ -41,7 +41,7 @@ const Login = () => {
         sessionStorage.setItem("user", data.user.username);
       }
 
-      window.location.href = "/dashboard";
+      window.location.href = "/";
 
       resetForm();
       setLoading(false);
