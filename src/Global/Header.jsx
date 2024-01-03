@@ -9,10 +9,13 @@ import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const Navigate=useNavigate()
+  const user= sessionStorage.getItem("user")
+
   const Logout = () => {
     alert("logout");
     sessionStorage.removeItem("Token");
-    window.location.href = "/";
+    Navigate('/')
+    window.location.reload ();
   };
 
   useEffect(() => {}, []);
@@ -29,14 +32,14 @@ const Header = () => {
               placeholder="Search..."
             />
           </div>
-          <div className="account">
-            <Dropdown>
+          <div className="account ">
+            <Dropdown >
               <Dropdown.Toggle id="dropdown-basic">
                 <img src={profile} alt="" className="profile" />
-                <span className="m-2">Bandan</span>
+                <span className="m-2">{user}</span>
               </Dropdown.Toggle>
 
-              <Dropdown.Menu>
+              <Dropdown.Menu className="w-100">
                 <li className="acc-list" onClick={()=>Navigate('/setting')}>
                   <IoSettings />
                   <span>Setting</span>

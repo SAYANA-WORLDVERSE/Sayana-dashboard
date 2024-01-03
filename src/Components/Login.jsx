@@ -37,9 +37,11 @@ const Login = () => {
       if (response.status == 201) {
         const data = await response.data;
         sessionStorage.setItem("Token", data.token);
+        sessionStorage.setItem("user", data.user.username);
       }
+      navigate("/dashboard");
+      window.location.reload();
 
-      window.location.href = "/dashboard";
 
       resetForm();
       setLoading(false);
