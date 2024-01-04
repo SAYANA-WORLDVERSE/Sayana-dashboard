@@ -1,1 +1,1 @@
-export const baseUrl = 'https://sayana.onrender.com/'
+export const baseUrl = 'https://sayana-backend.vercel.app/'
