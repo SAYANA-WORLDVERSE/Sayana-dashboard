@@ -39,7 +39,6 @@ const CreateBlog = () => {
         const data = await response.data;
         console.log(data);
       }
-      window.location.reload();
       Navigate("/allblogs");
     
      

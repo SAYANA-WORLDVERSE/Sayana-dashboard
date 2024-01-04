@@ -58,7 +58,6 @@ const Addproject = () => {
         headers
       );
       console.log(response);
-      window.location.reload();
        Navigate("/allprojects");
     } catch (error) {
       console.log(error);

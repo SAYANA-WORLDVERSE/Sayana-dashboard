@@ -4,12 +4,14 @@ import { baseUrl } from "../../api";
 import axios from "axios";
 import Swal from "sweetalert2";
 import blog from "../../assets/blogs.webp";
+import { useNavigate } from "react-router-dom";
 
 import { useParams } from "react-router-dom";
 
 const EditBlog = () => {
   const [buttonTxt, setbtnTxt] = useState("Submit");
   const params=useParams();
+  const Navigate=useNavigate()
   const {id}=params;
   const [formData, setFormData] = useState({
     title: "",
@@ -58,7 +60,7 @@ const EditBlog = () => {
         title: "Form Submitted Successfully!",
         text: "Thank you for submitting the form.",
       });
-      window.location.href='/Allblogs'
+      Navigate('/Allblogs')
      
       setbtnTxt("Submit");
     } catch (error) {

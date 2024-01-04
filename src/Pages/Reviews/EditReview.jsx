@@ -37,7 +37,6 @@ const EditReview = () => {
       }
       resetForm();
 
-      window.location.reload();
       Navigate("/allreviews");
     } catch (error) {
       console.error("Error submitting form:", error);
