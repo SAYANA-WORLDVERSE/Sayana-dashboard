@@ -1,40 +1,40 @@
-import React, { Fragment,useState } from "react";
+import React, { Fragment, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import { Formik, Field, Form } from "formik";
 import { baseUrl } from "../../api";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const CreateReview = () => {
-   
-    const initialValues = {
-      name: "",
-      title: "",
-      rating: "",
-      description: "",
-    };
+  const Navigate = useNavigate();
 
-    
+  const initialValues = {
+    name: "",
+    title: "",
+    rating: "",
+    description: "",
+  };
 
-
-  const handleSubmiting = async (values, { setSubmitting ,resetForm }) => {
-    
+  const handleSubmiting = async (values, { setSubmitting, resetForm }) => {
     try {
-      const response = await axios.post(`${baseUrl}review/createreview`, values);
-      if (response.status == 201 ) {
+      const response = await axios.post(
+        `${baseUrl}review/createreview`,
+        values
+      );
+      if (response.status == 201) {
         const data = await response.data;
         console.log(data);
-      } 
-     window.location.href='/allreviews'
+      }
       resetForm();
-   
+
+      window.location.reload();
+      Navigate("/allreviews");
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
       setSubmitting(false);
     }
   };
-
-
 
   return (
     <Fragment>
@@ -59,23 +59,45 @@ const CreateReview = () => {
                   <Form>
                     <div>
                       <label htmlFor="Full name">Full Name</label>
-                      <Field name="name" type="text"  className="form-control" required/>
+                      <Field
+                        name="name"
+                        type="text"
+                        className="form-control"
+                        required
+                      />
                     </div>
                     <div>
                       <label htmlFor="Title">Title</label>
-                      <Field name="title" type="text" className="form-control"  required/>
+                      <Field
+                        name="title"
+                        type="text"
+                        className="form-control"
+                        required
+                      />
                     </div>
                     <div>
                       <label htmlFor="Mobile">Rating</label>
-                      <Field name="rating" type="text" className="form-control"  required/>
+                      <Field
+                        name="rating"
+                        type="text"
+                        className="form-control"
+                        required
+                      />
                     </div>
                     <div>
                       <label htmlFor="Description">Description</label>
-                      <Field name="description" type="text" className="form-control"  required/>
+                      <Field
+                        name="description"
+                        type="text"
+                        className="form-control"
+                        required
+                      />
                     </div>
 
                     <div className="d-flex justify-content-end">
-                      <button type="submit" className="btn-gradient">Submit</button>
+                      <button type="submit" className="btn-gradient">
+                        Submit
+                      </button>
                     </div>
                   </Form>
                 </Formik>
@@ -85,7 +107,7 @@ const CreateReview = () => {
         </div>
       </div>
     </Fragment>
-  )
-}
+  );
+};
 
-export default CreateReview
+export default CreateReview;

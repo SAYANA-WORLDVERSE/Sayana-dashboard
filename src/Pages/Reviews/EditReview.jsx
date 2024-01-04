@@ -2,10 +2,11 @@ import React, { Fragment, useState, useEffect } from "react";
 import { IoMdAdd } from "react-icons/io";
 import { baseUrl } from "../../api";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 
 const EditReview = () => {
   const params = useParams();
+  const Navigate=useNavigate();
   const { id } = params;
   const [data, setFormData] = useState({
     name: "",
@@ -34,8 +35,10 @@ const EditReview = () => {
         const data = await response.data;
         console.log(data);
       }
-      window.location.href = "/allreviews";
       resetForm();
+
+      window.location.reload();
+      Navigate("/allreviews");
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {

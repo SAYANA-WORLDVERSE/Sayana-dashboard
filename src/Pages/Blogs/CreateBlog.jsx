@@ -1,11 +1,12 @@
 import React, { Fragment, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
-import { Formik, Field, Form, ErrorMessage } from "formik";
 import { baseUrl } from "../../api";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const CreateBlog = () => {
+  const Navigate=useNavigate()
   const [buttonTxt, setbtnTxt] = useState("Submit");
   const [formData, setFormData] = useState({
     title: "",
@@ -38,11 +39,9 @@ const CreateBlog = () => {
         const data = await response.data;
         console.log(data);
       }
-      Swal.fire({
-        icon: "success",
-        title: "Form Submitted Successfully!",
-        text: "Thank you for submitting the form.",
-      });
+      window.location.reload();
+      Navigate("/allblogs");
+    
      
       setbtnTxt("Submit");
     } catch (error) {

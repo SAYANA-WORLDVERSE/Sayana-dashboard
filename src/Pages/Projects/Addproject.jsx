@@ -2,8 +2,10 @@ import React, { Fragment, useState, useEffect } from "react";
 import { IoMdAdd } from "react-icons/io";
 import axios from "axios";
 import { baseUrl } from "../../api";
+import { useNavigate } from "react-router-dom";
 
 const Addproject = () => {
+  const Navigate=useNavigate()
   const [formData, setFormData] = useState({
     title: "",
     file: "",
@@ -56,7 +58,8 @@ const Addproject = () => {
         headers
       );
       console.log(response);
-      window.location.href = "/allprojects";
+      window.location.reload();
+       Navigate("/allprojects");
     } catch (error) {
       console.log(error);
     }
